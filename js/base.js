@@ -9,7 +9,7 @@ var Util = {
     extendMethod: function(target, methodName, func){
 
         //Save the super method
-        func.base = target[methodName] || emptyMethod;
+        func.base = target[methodName] || Util.noOp();
 
         //Replace Method with new one
         target[methodName] = func;
@@ -139,7 +139,7 @@ var Util = {
             ret = src.constructor ? new src.constructor() : {};
             for (var prop in src) {
                 ret[prop] = deep
-                    ? clone(src[prop], true)
+                    ? Util.clone(src[prop], true)
                     : src[prop];
             }
         }
